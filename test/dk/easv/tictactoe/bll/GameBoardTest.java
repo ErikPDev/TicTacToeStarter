@@ -1,25 +1,24 @@
-
 package dk.easv.tictactoe.bll;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
  * @author EASV
  */
-public class GameBoardTest
-{
+public class GameBoardTest {
 
     /**
      * Test of getNextPlayer method, of class GameBoard.
      */
     @Test
-    public void testGetNextPlayer()
-    {
+    public void testGetNextPlayer() {
         GameBoard instance = new GameBoard();
         int expResult = 0;
-        
+
         int result = instance.getNextPlayer();
         assertEquals(expResult, result);
     }
@@ -28,8 +27,7 @@ public class GameBoardTest
      * Test of getNextPlayer method, of class GameBoard.
      */
     @Test
-    public void testGetNextPlayerAfterOneRound()
-    {
+    public void testGetNextPlayerAfterOneRound() {
         GameBoard instance = new GameBoard();
         int expResult = 1;
 
@@ -43,8 +41,7 @@ public class GameBoardTest
      * Test of play method, of class GameBoard.
      */
     @Test
-    public void testPlayAtZeroZero()
-    {
+    public void testPlayAtZeroZero() {
         GameBoard instance = new GameBoard();
         int col = 0;
         int row = 0;
@@ -59,8 +56,7 @@ public class GameBoardTest
      * Test of play method, of class GameBoard.
      */
     @Test
-    public void testPlayAtOneOne()
-    {
+    public void testPlayAtOneOne() {
         GameBoard instance = new GameBoard();
         int col = 1;
         int row = 1;
@@ -75,8 +71,7 @@ public class GameBoardTest
      * Test of play method, of class GameBoard.
      */
     @Test
-    public void testPlayAtTakenSpot()
-    {
+    public void testPlayAtTakenSpot() {
         GameBoard instance = new GameBoard();
         int col = 1;
         int row = 1;
@@ -92,8 +87,7 @@ public class GameBoardTest
      * Test of isGameOver method, of class GameBoard.
      */
     @Test
-    public void testIsGameOver()
-    {
+    public void testIsGameOver() {
         GameBoard instance = new GameBoard();
 
         instance.play(0, 0); //Player 0
@@ -111,8 +105,7 @@ public class GameBoardTest
      * Test of getWinner method, of class GameBoard.
      */
     @Test
-    public void testGetWinnerPlayerZeroVeritcal()
-    {
+    public void testGetWinnerPlayerZeroVeritcal() {
         GameBoard instance = new GameBoard();
         int expResult = 0;
 
@@ -130,8 +123,7 @@ public class GameBoardTest
      * Test of getWinner method, of class GameBoard.
      */
     @Test
-    public void testGetWinnerPlayerOneHorizontal()
-    {
+    public void testGetWinnerPlayerOneHorizontal() {
         GameBoard instance = new GameBoard();
         int expResult = 1;
 
@@ -152,8 +144,7 @@ public class GameBoardTest
      * Test of getWinner method, of class GameBoard.
      */
     @Test
-    public void testGetWinnerDiagonally()
-    {
+    public void testGetWinnerDiagonally() {
         GameBoard instance = new GameBoard();
         boolean expResult = true;
 
