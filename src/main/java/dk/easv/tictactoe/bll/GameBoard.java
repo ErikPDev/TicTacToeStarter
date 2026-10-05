@@ -22,13 +22,10 @@ public class GameBoard implements IGameBoard {
     private int gameTurns = 0; // Max value should be 9.
 
 
-    /**
-     * Return 0 for player 0, 1 for player 1.
-     *
-     * @return int id of the current player
-     */
-    private int getCurrentPlayer() {
-        return player ? 1 : 0;
+    public String getNextPlayerString(){
+        if (this.getNextPlayer() == 0) return "X";
+        if (this.getNextPlayer() == 1) return "O";
+        return "ERR";
     }
 
     /**
@@ -37,8 +34,9 @@ public class GameBoard implements IGameBoard {
      * @return int Id of the next player.
      */
     public int getNextPlayer() {
-        return getCurrentPlayer();
+        return player ? 1 : 0;
     }
+
 
     /**
      * Attempts to let the current player play at the given coordinates. It the
@@ -55,7 +53,7 @@ public class GameBoard implements IGameBoard {
 
         if (gameBoard[col][row] != -1) return false;
 
-        gameBoard[col][row] = getCurrentPlayer();
+        gameBoard[col][row] = getNextPlayer();
 
         player = !player;
         gameTurns++;

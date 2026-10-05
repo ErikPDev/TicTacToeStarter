@@ -92,7 +92,7 @@ public class TicTacViewController implements Initializable {
      * Set the next player
      */
     private void setPlayer() {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer());
+        lblPlayer.setText(TXT_PLAYER + game.getNextPlayerString());
     }
 
 
@@ -102,15 +102,12 @@ public class TicTacViewController implements Initializable {
      * @param winner
      */
     private void displayWinner(int winner) {
-        String message = "";
-        switch (winner) {
-            case -1:
-                message = "It's a draw :-(";
-                break;
-            default:
-                message = "Player " + winner + " wins!!!";
-                break;
-        }
+        String message = switch (winner) {
+            case -1 -> "It's a draw :-(";
+            case 0 -> "Player X wins!!!";
+            case 1 -> "Player O wins!!!";
+            default -> "Player " + winner + " wins!!!";
+        };
         lblPlayer.setText(message);
     }
 

@@ -13,6 +13,8 @@ public interface IGameBoard {
      */
     int getNextPlayer();
 
+    String getNextPlayerString();
+
     /**
      * Attempts to let the current player play at the given coordinates. If the
      * attempt is succesfull the current player has ended his turn and it is the
@@ -44,4 +46,5 @@ public interface IGameBoard {
      * Resets the game to a new game state.
      */
     void newGame();
+
 }
