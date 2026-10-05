@@ -69,20 +69,21 @@ public class GameBoard implements IGameBoard {
      * @return true if the game is over, else it will retun false.
      */
     public boolean isGameOver() {
-        if (gameTurns >= 9) return true;
+         if (gameTurns >= 9) return true;
 
-        for (int[] col : gameBoard) {
-            if (col[0] == 0 && col[1] == 0 && col[2] == 0) return true;
-            if (col[0] == 1 && col[1] == 1 && col[2] == 1) return true;
-        }
-
-        // Check each column
+        // Check rows
         for (int row = 0; row < gameBoard.length; row++) {
-            if (gameBoard[0][row] == 0 && gameBoard[0][row] == 0 && gameBoard[0][row] == 0) return true;
-            if (gameBoard[0][row] == 1 && gameBoard[0][row] == 1 && gameBoard[0][row] == 1) return true;
+            if (gameBoard[row][0] == 0 && gameBoard[row][1] == 0 && gameBoard[row][2] == 0) return true;
+            if (gameBoard[row][0] == 1 && gameBoard[row][1] == 1 && gameBoard[row][2] == 1) return true;
         }
 
-        // Check Diagonal
+        // Check columns
+        for (int col = 0; col < gameBoard[0].length; col++) {
+            if (gameBoard[0][col] == 0 && gameBoard[1][col] == 0 && gameBoard[2][col] == 0) return true;
+            if (gameBoard[0][col] == 1 && gameBoard[1][col] == 1 && gameBoard[2][col] == 1) return true;
+        }
+
+        // Check diagonals
         if (gameBoard[0][0] == 0 && gameBoard[1][1] == 0 && gameBoard[2][2] == 0) return true;
         if (gameBoard[0][0] == 1 && gameBoard[1][1] == 1 && gameBoard[2][2] == 1) return true;
 
