@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 /**
  *
  * @author EASV
+ * Modified by Group 1
  */
 public class TicTacViewController implements Initializable {
     private static final String TXT_PLAYER = "Player: ";
@@ -31,6 +32,16 @@ public class TicTacViewController implements Initializable {
     private GridPane gridPane;
     private IGameBoard game;
 
+    private int getRow(Node node) {
+        Integer row = GridPane.getRowIndex(node);
+        return (row == null) ? 0 : row;
+    }
+
+    private int getCol(Node node) {
+        Integer col = GridPane.getColumnIndex(node);
+        return (col == null) ? 0 : col;
+    }
+
     /**
      * Event handler for the grid buttons
      *
@@ -39,20 +50,44 @@ public class TicTacViewController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         try {
-            Integer row = GridPane.getRowIndex((Node) event.getSource());
-            Integer col = GridPane.getColumnIndex((Node) event.getSource());
-            int r = (row == null) ? 0 : row;
-            int c = (col == null) ? 0 : col;
+            int row = this.getRow((Node) event.getSource());
+            int col = this.getCol((Node) event.getSource());
+
             int player = game.getNextPlayer();
-            if (!game.play(c, r))  return;
+            if (!game.play(col, row))  return;
 
             Button btn = (Button) event.getSource();
             String xOrO = player == 0 ? "X" : "O";
             btn.setText(xOrO);
 
+            String highlightColour = player == 0 ? "highlight-red" : "highlight-blue";
+            btn.getStyleClass().add(highlightColour);
+
             if (game.isGameOver()) {
                 int winner = game.getWinner();
                 displayWinner(winner);
+                if (winner == -1) return;
+
+                int[][] winningTiles = game.getWinningTiles();
+
+                int yellowButtons = 0;
+
+                for(int[] tile:  winningTiles) {
+                    for (Node node : gridPane.getChildren()) {
+                        if (yellowButtons > 3) return;
+
+                        int colNode = this.getCol(node);
+                        int rowNode = this.getRow(node);
+
+                        if (tile[0] == colNode && tile[1] == rowNode) {
+                            node.getStyleClass().removeAll("highlight-blue", "highlight-red");
+                            node.getStyleClass().add("highlight-yellow");
+                            yellowButtons++;
+                        }
+
+                    }
+                }
+
             } else {
                 setPlayer();
             }
@@ -118,6 +153,7 @@ public class TicTacViewController implements Initializable {
         for (Node n : gridPane.getChildren()) {
             Button btn = (Button) n;
             btn.setText("");
+            btn.getStyleClass().removeAll("highlight-red", "highlight-blue", "highlight-yellow");
         }
     }
 }

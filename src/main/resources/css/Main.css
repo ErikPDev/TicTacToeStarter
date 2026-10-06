@@ -3,3 +3,18 @@
     -fx-background-repeat: stretch;
     -fx-background-position: center;
 }
+
+.playerButton {
+    -fx-font-size: 40;
+}
+.highlight-yellow {
+    -fx-background-color: "yellow";
+}
+
+.highlight-blue {
+    -fx-background-color: "blue";
+}
+
+.highlight-red {
+    -fx-background-color: "red";
+}

@@ -13,6 +13,8 @@ public interface IGameBoard {
      */
     int getNextPlayer();
 
+    int[][] getWinningTiles();
+
     String getNextPlayerString();
 
     /**
