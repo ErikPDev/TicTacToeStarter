@@ -12,9 +12,9 @@
 }
 
 .highlight-blue {
-    -fx-background-color: "blue";
+    -fx-background-color: "#ADD8E6";
 }
 
 .highlight-red {
-    -fx-background-color: "red";
+    -fx-background-color: "#FE6F5E";
 }

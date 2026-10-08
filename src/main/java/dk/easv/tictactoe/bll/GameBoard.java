@@ -77,31 +77,27 @@ public class GameBoard implements IGameBoard {
 
     public int[][] getWinningTiles() {
         for (int row = 0; row < gameBoard.length; row++) {
-            if (gameBoard[row][0] == 0 && gameBoard[row][1] == 0 && gameBoard[row][2] == 0)
-                return new int[][]{{row, 0}, {row, 1}, {row, 2}};
-            if (gameBoard[row][0] == 1 && gameBoard[row][1] == 1 && gameBoard[row][2] == 1)
+            int first = gameBoard[row][0];
+            if ((first == 0 || first == 1) && gameBoard[row][1] == first && gameBoard[row][2] == first)
                 return new int[][]{{row, 0}, {row, 1}, {row, 2}};
         }
 
         // Check columns
         for (int col = 0; col < gameBoard[0].length; col++) {
-            if (gameBoard[0][col] == 0 && gameBoard[1][col] == 0 && gameBoard[2][col] == 0)
-                return new int[][]{{0, col}, {1, col}, {2, col}};
-            if (gameBoard[0][col] == 1 && gameBoard[1][col] == 1 && gameBoard[2][col] == 1)
+            int first = gameBoard[0][col];
+            if ((first == 0 || first == 1) && gameBoard[1][col] == first && gameBoard[2][col] == first)
                 return new int[][]{{0, col}, {1, col}, {2, col}};
         }
 
         // Check diagonals
-        if (gameBoard[0][0] == 0 && gameBoard[1][1] == 0 && gameBoard[2][2] == 0)
-            return new int[][]{{0, 0}, {1, 1}, {2, 2}};
-        if (gameBoard[0][0] == 1 && gameBoard[1][1] == 1 && gameBoard[2][2] == 1)
-            return new int[][]{{0, 0}, {1, 1}, {2, 2}};
+        int center = gameBoard[1][1];
+        if (center == 0 || center == 1) {
+            if (gameBoard[0][0] == center && gameBoard[2][2] == center)
+                return new int[][]{{0, 0}, {1, 1}, {2, 2}};
 
-        if (gameBoard[0][2] == 0 && gameBoard[1][1] == 0 && gameBoard[2][0] == 0)
-            return new int[][]{{0, 2}, {1, 1}, {2, 0}};
-        if (gameBoard[0][2] == 1 && gameBoard[1][1] == 1 && gameBoard[2][0] == 1)
-            return new int[][]{{0, 2}, {1, 1}, {2, 0}};
-
+            if (gameBoard[0][2] == center && gameBoard[2][0] == center)
+                return new int[][]{{0, 2}, {1, 1}, {2, 0}};
+        }
         return new int[][]{};
     }
 
@@ -149,6 +145,5 @@ public class GameBoard implements IGameBoard {
 
 
         this.player = getRandomBoolean();
-
     }
 }
